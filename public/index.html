@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+       
+    </head>
+    <header>
+        <div class="header-titel">
+               <img src="logo.png" class="logo">
+               <h1>GYM LOG</h1>
+           </div>
+               <div class="header-button">
+               <button>Home</button>
+               <button id="login-btn">Login</button>
+               <button>About</button>
+           </div>
+   
+       </header>
+<body>
+   
+    <div class="body">
+        
+      <div class="body-text">
+        <h1 >Track Your Progress, Lift Your Limits</h1>
+        <p>Gym Log is your digital weightlifting diary. 
+            Record your lifts, track your progress, and understand the 
+            power of progressive overload. With us
+            , you’re not just lifting weights - 
+            you’re reaching new fitness heights. Start today!</p>
+            <button id="Signupbtn">SIGN UP</button>
+            <div class="features-box">
+                <div>
+                <span class="material-symbols-outlined">
+                    credit_card_off
+                    </span>
+                <p>No credit card required </p>
+            </div>
+        <div><span class="material-symbols-outlined">
+            exercise
+            </span>
+                <p>Decent exercies variety</p>
+            </div>
+        <div>
+            <span class="material-symbols-outlined">
+                devices
+                </span>
+                <p>Can be used on phone or compture</p>
+            </div>
+
+            </div>
+    </div>
+    <div class="body-picture">
+        <img src="workout.jpg" class="body-picture">
+    </div>
+</div>
+
+<div id="signup-popup" class="signup-popup">
+    <form >
+        <span class="material-symbols-outlined cancel-icon" id="cancel-icon">
+            cancel
+            </span>
+        <label for="fname">Name:</label>
+        <input type="text" id="name" name="fname">
+        <label for="lname">Email:</label>
+        <input type="text" id="email" name="lname">
+        <label for="fname">Password:</label>
+        <input type="text" id="password" name="lname">
+        <button onclick="redirect()" type="submit" id="sign-btn">SUBMIT</button>
+      </form>          
+</div> 
+<div id="login-popup" class="signup-popup">
+    <form >
+        <span class="material-symbols-outlined cancel-icon" id="cancel-icon-login">
+            cancel
+            </span>
+        <label for="lname">Email:</label>
+        <input type="text" id="semail" name="lname">
+        <label for="fname">Password:</label>
+        <input type="text" id="spassword" name="lname">
+        <button  type="submit" id="sub-btn">LOGIN</button>
+      </form>
+<script src="script.js"></script>
+
+</body>
+
+</html>

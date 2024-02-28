@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+    
+</head>
+<body>
+  <header>
+    <div class="header-titel">
+           <img src="logo.png" class="logo">
+           <h1>GYM LOG</h1>
+       </div>
+           <div class="header-button">
+           <a href='http://localhost:3000/' ><button>Home</button></a>
+           <button>About</button>
+       </div>
+
+   </header>
+   
+   
+    <h1>Welcome <%= data.name%> </h1>
+    
+    <form>
+        <label for="exercice">Add an exercice:</label>
+        <select id="exercice" name="exercice">
+            <option value="Benchpress">Bench press</option>
+            <option value="Biceps curls">Biceps curl</option>
+          <option value="Squat">squat</option>
+          <option value="Deadlift">deadlift</option>
+          <option value="Rowing">Rowing</option>
+          <option value="Shoulderpress">Shoulders press</option>
+          <option value="Triceps">Tricpe push down</option>
+          <option value="Lateral">Lateral raise</option>
+          <option value="Pullup">Pull up</option>
+          <option value="Chinup">Chin up</option>
+          
+        </select>
+        <label for="weight">weight(KG):</label>
+        <input type="number" id="weight" >
+        <input id="sub-btn" type="submit" value="Submit">
+      </form>
+      <div class = 'big-container'>
+        <div>
+      <%
+if (data.exercices.length > 0) {
+  // Initialize an empty object to store unique exercises
+  const uniqueExercises = {};
+
+  data.exercices.forEach(exercise => {
+    if (!uniqueExercises[exercise.exname]) {
+      uniqueExercises[exercise.exname] = {
+        exname: exercise.exname,
+        weights: [],
+        dates: [],
+        id: exercise._id // Store the exercise ID for each exercise type
+      };
+    }
+
+    uniqueExercises[exercise.exname].weights.push(exercise.weight);
+    uniqueExercises[exercise.exname].dates.push(exercise.date);
+  });
+
+  const sortedExercises = Object.values(uniqueExercises).sort((a, b) => {
+    const dateA = new Date(a.dates[0]);
+    const dateB = new Date(b.dates[0]);
+    return dateA - dateB;
+  });
+
+  sortedExercises.forEach(exercise => {
+    const exerciseId = exercise.id;
+%>
+  <div id="exercice-head">
+    <span id="ex-icon" class="material-symbols-outlined">
+      exercise
+    </span>
+    <span id="ex-name"><%= exercise.exname %></span> <!-- Output the exercise name -->
+    <% exercise.weights.forEach((weight, index) => { %>
+      <div>
+      
+        <span>Weight: <%= weight %></span>
+        <span>Date: <%= exercise.dates[index] %></span>
+       
+       
+      </div>
+    <% }); %>
+  </div>
+<% });
+} else { %>
+  <div>Please add exercise</div> <!-- Output a message if there are no exercises -->
+<% } %>
+</div>
+<div >
+<canvas id="myChart"></canvas>
+</div>
+</div>
+<script>
+  const gymData = JSON.parse(decodeURIComponent('<%= encodeURIComponent(JSON.stringify(data.exercices)) %>'));
+  const days = []
+  const benchpress = []
+  const deadlift = []
+  const squat = []
+  gymData.forEach (ele =>{
+    days.push(ele.date.split('/').slice(0, 2).join('/'))
+    if(ele.exname === 'Benchpress'){
+      benchpress.push(ele.weight)
+    }
+    if(ele.exname === 'Deadlift'){
+      deadlift.push(ele.weight)
+    }
+    if (ele.exname === 'Squat') { 
+    squat.push(ele.weight);
+  }
+  })
+
+ 
+  
+  const xValues = days;
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      label:'Benchpress',
+      data: benchpress,
+      borderColor: "red",
+      fill: false,
+      
+    }, { 
+      label:'Deadlift',
+      data: deadlift,
+      borderColor: "green",
+      fill: false
+    }, { 
+      label:'Squat',
+      data: squat,
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+    plugins: {
+      customCanvasBackgroundColor: {
+        color: 'lightGreen',
+      }
+    },
+    legend: {display: true},
+  
+    
+  },
+   
+});
+  </script>
+    </body>
+</html>
+<script>
+  console.log('<%= data._id%>')
+const subBtn = document.getElementById('sub-btn');
+subBtn.addEventListener('click', async function () {
+  event.preventDefault();
+const name = document.getElementById('exercice').value
+const weight = document.getElementById('weight').value
+
+const dateObject = new Date();
+const year = dateObject.getFullYear();
+const month = dateObject.getMonth() + 1; 
+const day = dateObject.getDate();
+const trimmedString = `${month}/${day}/${year}`;
+const url = encodeURIComponent('<%= data._id%>')
+  console.log('submit exercice button clicked!')
+  console.log(name,weight,trimmedString)
+
+  try {
+      const response = await fetch(`http://localhost:3000/${url}`, {
+          method: 'PATCH',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+  exercices: [
+      {
+          exname: name,
+          weight: weight ,
+          date: trimmedString
+      }
+     
+  ]
+}),
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to add exercise');
+      }
+
+      console.log('Exercise added successfully!');
+  } catch (error) {
+      console.error(error.message);
+  }
+
+})
+
+</script>

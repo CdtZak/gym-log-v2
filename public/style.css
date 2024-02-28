@@ -1,0 +1,214 @@
+
+
+
+/*GENERAL STYLE*/
+body {
+    color: white;
+    background-color:black;
+  
+  }
+  p{
+    color: gray;
+  }
+  /*HEADER STYLE*/
+  header{
+    max-width: 100%;
+    display: flex;
+    align-items: center; 
+    color: white;
+    justify-content: space-between; 
+    margin-bottom: 80px;
+    
+  }
+  .header-titel{
+   max-width: 100%;
+    width: 500px;
+    display: flex;
+     justify-content:safe;
+    align-items: center; 
+    margin-left: 40px;
+    
+  }
+  .header-button{
+    width: 400px;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    
+  }
+  .header-button button{
+    font-weight: bold;
+  }
+  .logo{
+    width: 60px;
+    margin-right: 30px;
+    
+  }
+  /*BODY STYLE*/
+  body img{
+    max-width: 100%;
+    width: 500px;
+    
+  }
+  .body{
+    display:flex;
+    justify-content: space-around;
+  }
+  .body h1{
+    font-size: 60px;
+    text-shadow: -15px -15px 5px rgba(247, 246, 246, 0.5);
+  }
+  
+  .body-text{
+  max-width: 100%;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .body-text button{
+    color: white;
+    background-color: red;
+    width: 150px;
+    height: 50px;
+    font-size: larger;
+    font-weight: bold;
+  }
+  .features-box{
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin-top: 50px;
+    background-color: rgb(17, 17, 17);
+  }
+  .features-box>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  
+    
+  }
+  .features-box>div>p{
+    color: white;
+  }
+  .features-box>div>span{
+    color: red;
+  }
+  .signup-popup form{
+    background-image: linear-gradient(to right top, #894343, #963b3c, #a23035, #ae212d, #b90125);
+    width: 250px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -350px;
+    right: -500px;
+    border: 2px solid gray;
+    opacity: 1;
+
+  }
+  #sub-btn, #sign-btn{
+    margin-top: 15px;
+    width: 100px;
+    margin-left: 75px;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+  #sub-btn:hover, #sign-btn:hover{
+    color: red;
+  }
+  .cancel-icon{
+    margin-top: 10px;
+    margin-left: 220px;
+    cursor: pointer;
+  }
+  .cancel-icon:hover{
+    color: gray;
+  }
+  .signup-popup{
+    display: none;
+  }
+  .login-popup{
+    display: none;
+  }
+ 
+  
+  #ex-name{
+    margin-left: 30px;
+    font-size: 30px;
+  }
+  
+
+  .material-symbols-outlined {
+    font-size: 50px;
+  }
+.delete-btn:hover{
+  color: red;
+  cursor: pointer;
+}
+.delete-btn{
+ font-size: 30px;
+ margin-left: 20px;
+
+}
+.big-container{
+  display: flex;
+  margin-top: 20px;
+}
+#myChart{
+  margin-left: 300px;
+  width: 200px;
+  
+}
+/*media queries */
+@media (max-width:940px){
+  .body h1{
+ text-align: center;
+}
+header{
+  margin-bottom: 20px ;
+  
+}
+p {
+  color: #d5d0d0;
+  text-align: center;
+}
+.body-picture{
+  display: none;
+}
+.body-text{
+background-image: url("gymMobileBackground.jpg")
+;
+background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+.features-box{
+  
+  margin-top: 100px;
+  background-color: rgb(41 41 41);
+}
+.header-titel {
+  margin-left: 20px;
+}
+.signup-popup form {
+  right: -80px;
+  top:-450px
+}
+.big-container{
+  display:block; 
+}
+#myChart {
+  margin-left: 0px;
+  margin-top: 40px;
+}
+#ex-name{
+  color: red;
+}
+#ex-icon{
+  color: grey
+}
+
+}
