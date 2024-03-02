@@ -1,6 +1,18 @@
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+exports.test = async (req,res,next)=>{
+    try{ res.status(201).json({
+        message:"shit is working"
+    })
+
+    }catch(err){
+        res.status(404).json({
+            error:err,
+                message:'user was not registered ! '
+            })
+    }
+}
 exports.signUp = async(req,res,next) =>{
 try{
    //PASSWORD HASH
