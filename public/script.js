@@ -31,7 +31,7 @@ subBtn.addEventListener('click',async function(){
     event.preventDefault();
 const email = document.getElementById('semail').value
 const password = document.getElementById('spassword').value
-const response = await fetch('http://localhost:3000/login', {
+const response = await fetch('https://gym-log-v2.onrender.com/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const response = await fetch('http://localhost:3000/login', {
         console.log(data)
         const id = data.data.user._id
         function redirect(url){
-            window.location.href = `http://localhost:3000/${url}`;
+            window.location.href = `https://gym-log-v2.onrender.com/${url}`;
             console.log('redirect')
         }
         redirect(id)
@@ -60,7 +60,7 @@ const email = document.getElementById('email').value
 const password = document.getElementById('password').value
     console.log(name,email,password)
     console.log('user in client side registered!')
-    const response = await fetch('http://localhost:3000/signUp', {
+    const response = await fetch('https://gym-log-v2.onrender.com/signUp', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const password = document.getElementById('password').value
         console.log(data)
         const id = data.data.user._id
         function redirect(url){
-            window.location.href = `http://localhost:3000/${url}`;
+            window.location.href = `https://gym-log-v2.onrender.com/${url}`;
             console.log('redirect')
         }
         redirect(id)

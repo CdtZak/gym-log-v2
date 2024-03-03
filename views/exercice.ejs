@@ -175,7 +175,7 @@ const url = encodeURIComponent('<%= data._id%>')
   console.log(name,weight,trimmedString)
 
   try {
-      const response = await fetch(`http://localhost:3000/${url}`, {
+      const response = await fetch(`https://gym-log-v2.onrender.com/${url}`, {
           method: 'PATCH',
           headers: {
               'Content-Type': 'application/json',
